@@ -1,0 +1,86 @@
+﻿@baseUrl = https://localhost:7125/api
+@contentType = application/json
+
+### Login and Get JWT Token
+# This request logs in and retrieves the JWT token for authentication.
+POST {{baseUrl}}/auth/login
+Content-Type: {{contentType}}
+
+{
+    {
+        "email": "agile_admin@actors.com",
+        "password": "1234567890"
+    }
+}
+
+### Save the Token for Future Requests
+@auth_token = {{response.body.token}}
+
+### Get All Customers
+GET {{baseUrl}}/customers
+Authorization: Bearer {{auth_token}}
+
+### Get a Customer by ID
+GET {{baseUrl}}/customers/1
+
+### Create a New Customer
+POST {{baseUrl}}/customers
+Content-Type: {{contentType}}
+
+{
+    "fName": "John",
+    "lName": "Doe",
+    "email": "john.doe@example.com",
+    "addresses": [
+        {
+            "street": "123 Main St",
+            "city": "New York",
+            "postalCode": "10001",
+            "buildingNr": "12A",
+            "floor": 2,
+            "latitude": 40.7128,
+            "longitude": -74.0060,
+            "isDeleted": false
+        }
+    ],
+    "phones": [
+        {
+            "telephone": "+1234567890"
+        }
+    ]
+}
+
+### Update an Existing Customer
+PUT {{baseUrl}}/customers/1
+Content-Type: {{contentType}}
+
+{
+    "id": "1",
+    "fName": "UpdatedJohn",
+    "lName": "UpdatedDoe",
+    "email": "updated.john.doe@example.com",
+    "addresses": [
+        {
+            "id": 1,"
+            "street": "456 Elm St",
+            "city": "Los Angeles",
+            "postalCode": "90001",
+            "buildingNr": "34B",
+            "floor": 3,
+            "latitude": 34.0522,
+            "longitude": -118.2437,
+            "isDeleted": false
+        }
+    ],
+    "phones": [
+        {
+            "id": 1,"
+            "telephone": "+1987654321"
+        }
+    ]
+}
+
+### Delete a Customer by ID
+DELETE {{baseUrl}}/customers/1
+
+###
