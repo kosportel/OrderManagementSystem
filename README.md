@@ -40,11 +40,11 @@ To ensure loose coupling, data is shared across these layers using **DTOs, Domai
 
 1. Clone the repository:
    ```sh
-   git clone https://github.com/your-repo-url.git
+   git clone https://github.com/kosportel/OrderManagementSystem.git
    ```
 2. Navigate to the API project:
    ```sh
-   cd OrderManagementBuild-main/src/OrderManagement.Api
+   cd OrderManagementSystem/src/OrderManagement.Api
    ```
 3. Restore dependencies:
    ```sh
@@ -70,13 +70,16 @@ Use the **JWT token** from login to authenticate subsequent requests in Swagger 
 
 ### **Sample Flow**
 - Login using the credentials above
+```
 {
   "email": "agile_admin@actors.com",
   "password": "1234567890"
 }
+```
 
 ### **Pickup Order**
 - Set a new order for Pickup [Post]https://localhost:7125/api/orders
+```
 {
     "customerId": 1,
     "orderTypeId": "Pickup",
@@ -87,6 +90,7 @@ Use the **JWT token** from login to authenticate subsequent requests in Swagger 
         { "menuItemId": 3, "quantity": 1, "price": 7.99 }
     ]
 }
+```
 - Check that the order is created [Get]https://localhost:7125/api/orders/{id}
 - Check the status [Get]https://localhost:7125/api/orders/{id}/status
 - Move the status to the next step [Post]https://localhost:7125/api/orders/id/status
@@ -95,6 +99,7 @@ Use the **JWT token** from login to authenticate subsequent requests in Swagger 
 
 ### **Delivery Order**
 - Set a new order for Pickup [Post]https://localhost:7125/api/orders
+```
 {
     "customerId": 1,
     "orderTypeId": "Delivery",
@@ -105,6 +110,7 @@ Use the **JWT token** from login to authenticate subsequent requests in Swagger 
         { "menuItemId": 3, "quantity": 1, "price": 7.99 }
     ]
 }
+```
 - Check that the order is created [Get]https://localhost:7125/api/orders/{id}
 - Check the status [Get]https://localhost:7125/api/orders/{id}/status
 - Move the status to the next step [Post]https://localhost:7125/api/orders/id/status
@@ -115,11 +121,13 @@ Use the **JWT token** from login to authenticate subsequent requests in Swagger 
 - Check that the order is assigned to the Delivery person [Get]https://localhost:7125/api/delivery/assignments/user/3
 - The person starts the Delivery [Put] https://localhost:7125/api/delivery/orders/12/startDelivery?userId=3
 - The person ends the Delivery [Put]https://localhost:7125/api/delivery/orders/12/close
+```
 {
   "userId": 3,
   "isDelivered": true,
   "notes": "string"
 }
+```
 
 ## Future Enhancements
 
